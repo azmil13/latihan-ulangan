@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js">Home</script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+</head>
+<body>
+  
+  
+
+    <center>
+         
+        <h2>Program Menghitung Gaji</h2>
+
+        <fieldset style="width: 200px;">
+    <div class="container"></div>
+    
+    <label>Masukkan Nama Anda</label>
+    <input type="text" id="nama" placeholder="   Masukkan Nama Lengkap   " name="nma" required>
+    
+    <br>
+    <br>
+    
+<div class="lang">
+    <label>  Pilih Golongan Anda </label>
+    
+    <select id="pilih" required>
+        <option value="1">Golongan 1</option>
+        <option value="2">Golongan 2</option>
+        <option value="3">Golongan 3</option>
+    </select>
+
+    <br>
+    <br>
+
+    <label>Sudah Berkeluarga ? </label>
+    <br>
+    <select id="pilih2">
+        <option value="4">Ya</option>
+        <option value="5">Belum</option>
+    </select>
+</div>
+
+    <br>
+    <br>
+
+    <input type="submit" value="Konfirmasi" onclick="proses()">
+
+    </fieldset>
+    </center>
+   
+
+    <br>
+
+  
+      
+     <div class="container">
+   
+        <ul>
+            <li id="6"></li>
+            <li id="9"></li>
+            <li id="11"></li>
+            <li id="7"></li>
+            <li id="8"></li>
+            <li id="12"></li>
+        </ul>
+    
+
+    <script>
+    
+    //Gaji Pokok
+    
+     function proses() {
+
+        var pilih = document.getElementById("pilih").value;
+        var pilih2 = document.getElementById("pilih2").value
+        var nama = document.getElementById("nama").value
+
+        var karyawan = {
+            golongan1 : 500000,
+            golongan2 : 750000,
+            golongan3 : 900000,
+            tunjangan3 : 500000,
+            tunjangan2 : 0,
+            pajak1 : 400000 + 500000 * 100000,
+            pajak2 : 750000 + 500000 * 125000,
+            pajak3 : 900000 + 500000 * 140000,
+            pajak4 : 500000 * 50000,
+            pajak5 : 750000 * 75000,
+            pajak6 : 900000 * 90000,
+            
+            
+            tunjangan : function () {
+                return " 500000 "
+            },
+
+            tunjangan2 : function () {
+                return "0"
+            }
+         
+          
+        }
+        
+        document.getElementById("6").innerHTML = " Nama Lengkap &nbsp: " + nama; 
+        
+        if (nama == "") {
+          tampil = alert ("Isi Kolom Nama Terlebih Dahulu !");
+          document.getElementById("6").innerHTML = tampil
+          
+          
+        }
+        
+     
+        
+
+        else if (pilih == 1) {
+          
+            document.getElementById("9").innerHTML = " Golongan   &nbsp &nbsp &nbsp &nbsp   &nbsp : 1  " 
+            document.getElementById("11").innerHTML = " Gaji Pokok &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.golongan1;
+            
+            
+            
+            proses2();
+            
+        }
+
+        else if (pilih == 2) {
+          
+            document.getElementById("9").innerHTML = "Golongan &nbsp &nbsp &nbsp &nbsp &nbsp : 2"
+            document.getElementById("11").innerHTML = " Gaji Pokok &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.golongan2;
+             
+            
+            proses2();
+        }
+
+        else if (pilih == 3) {
+          
+            document.getElementById("9").innerHTML = "Golongan &nbsp &nbsp &nbsp &nbsp &nbsp : 3";
+            
+            document.getElementById("11").innerHTML = " Gaji Pokok &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.golongan3;
+            
+            proses2();
+        }
+        
+        //Penghitung Pajak Dan Tunjangan
+        
+        function proses2() {
+          
+          var pilih2 = document.getElementById("pilih2").value
+          var gji = (500000 + 500000) * 0.1;
+          var gji2 = (750000 + 500000) * 0.1;
+          var gji3 = (900000 + 500000) * 0.1;
+          var gji4 = (500000 + 0) * 0.1
+          var gji5 = (750000 + 0) * 0.1
+          var gji6 = (900000 + 0) * 0.1
+         
+        if (pilih2 == 4 && pilih == 1) {
+         
+         
+            document.getElementById("7").innerHTML = " Tunjangan  &nbsp &nbsp &nbsp &nbsp : Rp." + karyawan.tunjangan();
+            document.getElementById("8").innerHTML = "Pajak  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp &nbsp &nbsp &nbsp : Rp. " + gji;
+            document.getElementById("12").innerHTML = "Total Gaji  &nbsp &nbsp  &nbsp  &nbsp  &nbsp  : Rp. " + (500000 + 500000 - gji)
+        }
+
+        else if (pilih2 == 4 && pilih == 2) {
+          
+            document.getElementById("7").innerHTML = " Tunjangan  &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.tunjangan();
+            
+            document.getElementById("8").innerHTML = "Pajak &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : Rp. " + gji2;
+            
+            document.getElementById("12").innerHTML = "Total Gaji  &nbsp &nbsp  &nbsp  &nbsp  &nbsp  : Rp. " + (750000 + 500000 - gji2)
+        }
+        
+        else if (pilih2 == 4 && pilih == 3) {
+          
+         
+            document.getElementById("7").innerHTML = " Tunjangan  &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.tunjangan();
+            
+            document.getElementById("8").innerHTML = "Pajak &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : Rp. " + gji3;
+            document.getElementById("12").innerHTML = "Total Gaji  &nbsp &nbsp  &nbsp  &nbsp  &nbsp  : Rp. " + (900000 + 500000 - gji3)
+            
+        }
+        
+        else if (pilih2 == 5 && pilih == 1) {
+          
+         
+            document.getElementById("7").innerHTML = " Tunjangan  &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.tunjangan2();
+            
+            document.getElementById("8").innerHTML = "Pajak &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : Rp. " + gji4;
+            document.getElementById("12").innerHTML = "Total Gaji  &nbsp &nbsp  &nbsp  &nbsp  &nbsp  : Rp. " + (500000 - gji4)
+            
+        }
+        
+        else if (pilih2 == 5 && pilih == 2) {
+          
+         
+            document.getElementById("7").innerHTML = " Tunjangan  &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.tunjangan2();
+            
+            document.getElementById("8").innerHTML = "Pajak &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : Rp. " + gji5;
+            document.getElementById("12").innerHTML = "Total Gaji  &nbsp &nbsp  &nbsp  &nbsp  &nbsp  : Rp. " + (750000  - gji5)
+            
+        }
+        
+        else if (pilih2 == 5 && pilih == 3) {
+          
+         
+            document.getElementById("7").innerHTML = " Tunjangan  &nbsp &nbsp &nbsp &nbsp : Rp. " + karyawan.tunjangan2();
+            
+            document.getElementById("8").innerHTML = "Pajak &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : Rp. " + gji6;
+            document.getElementById("12").innerHTML = "Total Gaji  &nbsp &nbsp  &nbsp  &nbsp  &nbsp  : Rp. " + (900000 - gji6)
+            
+        }
+          
+        
+        
+        
+        
+ 
+          
+         
+
+
+      
+        }
+     }
+     
+        
+        
+        
+
+        </script>
+<center>
+<br>
+<br>
+<br>
+<p>Edit Azmil F</p>
+
+
+</body>
+</html>
